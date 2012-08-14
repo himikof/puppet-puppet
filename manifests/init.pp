@@ -29,6 +29,15 @@ class puppet (
         enable => 'true',
       }
       
+      augeas { 'puppet_conf':
+        context => '/files/etc/puppet/puppet.conf',
+        changes => [
+          'set main/pluginsync true',
+          'set agent/report true',
+        ],
+        require => Package['puppet'],
+      }
+      
       if $mutual_restart {
         # Mutual restart pattern
         cron { 'restart-puppet':
