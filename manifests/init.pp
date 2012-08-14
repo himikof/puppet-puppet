@@ -18,7 +18,7 @@ class puppet (
     {
       portage::use_flags { 'puppet':
         package => 'app-admin/puppet',
-        use     => 'shadow sqlite3',
+        use     => 'shadow sqlite3 augeas',
       }
       package { 'puppet':
         ensure  => 'latest',
