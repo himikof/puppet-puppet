@@ -20,6 +20,10 @@ class puppet (
         package => 'app-admin/puppet',
         use     => 'shadow sqlite3 augeas',
       }
+      package::keywords { 'ruby_augeas_fix':
+        package => '~dev-ruby/ruby-augeas-0.4.1',
+        before  => Package['puppet'],
+      }
       package { 'puppet':
         ensure  => 'latest',
         require => Portage::Use_flags['puppet'],
